@@ -5,6 +5,7 @@ const newBody = '<br>' +
     '<br><br>';
 
 const location = 'https://events-staging.onlive.site/event/71edc0d8-c99e-4b30-8c05-ebd5b5a71248';
+const subject = '<a href="https://onlive.site/" target="_blank"><img src="https://alev-dev.github.io/mic-addin/public/assets/icon-32.png" alt="Onlive" /></a>';
 
 let mailboxItem;
 
@@ -18,6 +19,7 @@ Office.onReady(function () {
 //    to update the meeting body with the online meeting details.
 function insertOnliveMeeting(event) {
     // Get HTML body from the client.
+    //Get and update location
     mailboxItem.location.getAsync(
         function callback(asyncResult) {
         if (asyncResult.status === Office.AsyncResultStatus.Succeeded) {
@@ -26,6 +28,23 @@ function insertOnliveMeeting(event) {
             console.error("Failed to get Location.");
             return;
         }
+    });
+    // Get and update subject
+    mailboxItem.subject.getAsync((result) => {
+        if (result.status !== Office.AsyncResultStatus.Succeeded) {
+          console.error(`Action failed with message ${result.error.message}`);
+          return;
+        }
+
+        console.log(`Subject: ${result.value}`);
+
+        mailboxItem.subject.setAsync(subject + result.value, (result) => {
+            if (result.status !== Office.AsyncResultStatus.Succeeded) {
+              console.error(`Action failed with message ${result.error.message}`);
+              return;
+            }
+            console.log(`Successfully set subject to ${subject}`);
+        });        
     });
     /*mailboxItem.body.getAsync("html",
         { asyncContext: event },
