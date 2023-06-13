@@ -4,6 +4,8 @@ const newBody = '<br>' +
     '<a href="https://events-staging.onlive.site/event/71edc0d8-c99e-4b30-8c05-ebd5b5a71248" target="_blank">Join Onlive.site meeting</a>' +
     '<br><br>';
 
+const location = 'https://events-staging.onlive.site/event/71edc0d8-c99e-4b30-8c05-ebd5b5a71248';
+
 let mailboxItem;
 
 // Office is ready.
@@ -16,7 +18,16 @@ Office.onReady(function () {
 //    to update the meeting body with the online meeting details.
 function insertOnliveMeeting(event) {
     // Get HTML body from the client.
-    mailboxItem.body.getAsync("html",
+    mailboxItem.location.getAsync(
+        function callback(asyncResult) {
+        if (asyncResult.status === Office.AsyncResultStatus.Succeeded) {
+            updateBody(asyncResult.context, asyncResult.value);
+        } else {
+            console.error("Failed to get Location.");
+            return;
+        }
+    });
+    /*mailboxItem.body.getAsync("html",
         { asyncContext: event },
         function (getBodyResult) {
             if (getBodyResult.status === Office.AsyncResultStatus.Succeeded) {
@@ -26,7 +37,7 @@ function insertOnliveMeeting(event) {
                 getBodyResult.asyncContext.completed({ allowEvent: false });
             }
         }
-    );
+    );*/
 }
 // Register the function.
 Office.actions.associate("insertOnliveMeeting", insertOnliveMeeting);
@@ -35,7 +46,14 @@ Office.actions.associate("insertOnliveMeeting", insertOnliveMeeting);
 //    that appends the online meeting details to the current body of the meeting.
 function updateBody(event, existingBody) {
     // Append new body to the existing body.
-    mailboxItem.body.setAsync(existingBody + newBody,
+    mailboxItem.location.setAsync(location, (result) => {
+        if (result.status !== Office.AsyncResultStatus.Succeeded) {
+          console.error(`Action failed with message ${result.error.message}`);
+          return;
+        }
+        console.log(`Successfully set location to ${location}`);
+    });
+    /*mailboxItem.body.setAsync(existingBody + newBody,
         { asyncContext: event, coercionType: "html" },
         function (setBodyResult) {
             if (setBodyResult.status === Office.AsyncResultStatus.Succeeded) {
@@ -45,5 +63,5 @@ function updateBody(event, existingBody) {
                 setBodyResult.asyncContext.completed({ allowEvent: false });
             }
         }
-    );
+    );*/
 }
