@@ -6,8 +6,8 @@
   <DefaultLocale>en-US</DefaultLocale>
   <DisplayName DefaultValue="onlive-microsoft-addin"/>
   <Description DefaultValue="Onlive.site join meeting."/>
-  <IconUrl DefaultValue="https://localhost:3000/assets/icon-64.png"/>
-  <HighResolutionIconUrl DefaultValue="https://localhost:3000/assets/icon-128.png"/>
+  <IconUrl DefaultValue="https://alev-dev.github.io/mic-addin/public/assets/icon-64.png"/>
+  <HighResolutionIconUrl DefaultValue="https://alev-dev.github.io/mic-addin/public/assets/icon-128.png"/>
   <SupportUrl DefaultValue="https://www.contoso.com/help"/>
   <AppDomains>
     <AppDomain>https://onlive.site/</AppDomain>
@@ -23,7 +23,7 @@
   <FormSettings>
     <Form xsi:type="ItemRead">
       <DesktopSettings>
-        <SourceLocation DefaultValue="https://localhost:3000/taskpane.html"/>
+        <SourceLocation DefaultValue="https://alev-dev.github.io/mic-addin/public/taskpane.html"/>
         <RequestedHeight>250</RequestedHeight>
       </DesktopSettings>
     </Form>
@@ -73,14 +73,14 @@
       </Hosts>
       <Resources>
         <bt:Images>
-          <bt:Image id="icon-16" DefaultValue="https://contoso.com/assets/icon-16.png"/>
-          <bt:Image id="icon-32" DefaultValue="https://contoso.com/assets/icon-32.png"/>
-          <bt:Image id="icon-48" DefaultValue="https://contoso.com/assets/icon-48.png"/>
-          <bt:Image id="icon-64" DefaultValue="https://contoso.com/assets/icon-64.png"/>
-          <bt:Image id="icon-80" DefaultValue="https://contoso.com/assets/icon-80.png"/>
+          <bt:Image id="icon-16" DefaultValue="https://alev-dev.github.io/mic-addin/public/assets/icon-16.png"/>
+          <bt:Image id="icon-32" DefaultValue="https://alev-dev.github.io/mic-addin/public/assets/icon-32.png"/>
+          <bt:Image id="icon-48" DefaultValue="https://alev-dev.github.io/mic-addin/public/assets/icon-48.png"/>
+          <bt:Image id="icon-64" DefaultValue="https://alev-dev.github.io/mic-addin/public/assets/icon-64.png"/>
+          <bt:Image id="icon-80" DefaultValue="https://alev-dev.github.io/mic-addin/public/assets/icon-80.png"/>
         </bt:Images>
         <bt:Urls>
-          <bt:Url id="residFunctionFile" DefaultValue="https://contoso.com/commands.html"/>
+          <bt:Url id="residFunctionFile" DefaultValue="https://alev-dev.github.io/mic-addin/public/commands.html"/>
         </bt:Urls>
         <bt:ShortStrings>
           <bt:String id="residDescription" DefaultValue="Onlive.site meeting"/>
